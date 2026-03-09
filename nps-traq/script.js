@@ -27,8 +27,22 @@ let isTransitioning = false;
    ========================================== */
 
 function initClientParam() {
+  // First try URL parameters (e.g., ?cliente=empresa-alpha)
   const params = new URLSearchParams(window.location.search);
-  const cliente = params.get('cliente');
+  let cliente = params.get('cliente');
+
+  // Fallback: If no query param, try to extract from the pathname (e.g., /empresa-alpha or /nps-traq/empresa-alpha)
+  if (!cliente) {
+    const pathSegments = window.location.pathname.split('/').filter(Boolean);
+    if (pathSegments.length > 0) {
+      // Get the last segment, ignoring 'nps-traq' or 'index.html'
+      const lastSegment = pathSegments[pathSegments.length - 1];
+      if (lastSegment && lastSegment !== 'nps-traq' && lastSegment !== 'index.html') {
+        cliente = lastSegment;
+      }
+    }
+  }
+
   const hidden = document.getElementById('cliente-hidden');
   if (cliente && hidden) {
     hidden.value = cliente;
