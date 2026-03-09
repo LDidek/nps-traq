@@ -370,17 +370,25 @@ function initFormSubmit() {
     try {
       const formData = new FormData(form);
       const clienteHidden = document.getElementById('cliente-hidden');
-      if (clienteHidden && clienteHidden.value && !formData.has('cliente')) {
-        formData.append('cliente', clienteHidden.value);
-      } else if (clienteHidden && clienteHidden.value) {
-        formData.set('cliente', clienteHidden.value);
+
+      // Ensure cliente is explicitly set before anything else
+      let finalParams = new URLSearchParams();
+      if (clienteHidden && clienteHidden.value) {
+        finalParams.append('cliente', clienteHidden.value);
+      }
+
+      // Append the rest of the form data
+      for (const [key, value] of formData.entries()) {
+        if (key !== 'cliente') {
+          finalParams.append(key, value);
+        }
       }
 
       // Envia os dados especificamente para a rota onde o formulário HTML original reside
       const res = await fetch('/nps-traq/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
+        body: finalParams.toString()
       });
 
       if (res.ok) {
