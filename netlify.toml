@@ -19,6 +19,12 @@
   status = 302
   force = true
 
+# NPS - Links camuflados diretos na raiz (ex: nps.traq.com.br/empresa-alpha)
+[[redirects]]
+  from = "/:cliente"
+  to = "/nps-traq/?cliente=:cliente"
+  status = 200
+
 # NPS - Links camuflados (URL limpa para o cliente)
 # Sem force: Netlify serve arquivos reais primeiro (CSS, JS, HTML)
 # So aplica rewrite quando o arquivo nao existe (ex: /nps-traq/traq)
