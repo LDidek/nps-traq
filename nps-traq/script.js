@@ -369,6 +369,12 @@ function initFormSubmit() {
 
     try {
       const formData = new FormData(form);
+      const clienteHidden = document.getElementById('cliente-hidden');
+      if (clienteHidden && clienteHidden.value && !formData.has('cliente')) {
+        formData.append('cliente', clienteHidden.value);
+      } else if (clienteHidden && clienteHidden.value) {
+        formData.set('cliente', clienteHidden.value);
+      }
 
       const res = await fetch(form.getAttribute('action') || window.location.pathname, {
         method: 'POST',
