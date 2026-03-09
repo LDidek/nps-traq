@@ -376,7 +376,8 @@ function initFormSubmit() {
         formData.set('cliente', clienteHidden.value);
       }
 
-      const res = await fetch(form.getAttribute('action') || window.location.pathname, {
+      // Envio sempre para a raiz '/' para garantir que o Netlify intercepte o POST
+      const res = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(formData).toString()
