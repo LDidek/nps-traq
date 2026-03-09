@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="16" fill="#03243E"/>
+
+  <!-- Exclamation mark (!) in TraQ! brand color -->
+  <g fill="#F1E41A">
+    <!-- Vertical bar of exclamation -->
+    <rect x="14" y="8" width="4" height="12" rx="2"/>
+    <!-- Dot of exclamation -->
+    <circle cx="16" cy="24" r="2"/>
+  </g>
+</svg>
