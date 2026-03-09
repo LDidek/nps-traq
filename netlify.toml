@@ -19,6 +19,12 @@
   status = 302
   force = true
 
+# Página de Obrigado na Raíz
+[[redirects]]
+  from = "/obrigado"
+  to = "/nps-traq/obrigado.html"
+  status = 200
+
 # NPS - Links camuflados diretos na raiz (ex: nps.traq.com.br/empresa-alpha)
 [[redirects]]
   from = "/:cliente"
