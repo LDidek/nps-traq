@@ -376,8 +376,8 @@ function initFormSubmit() {
         formData.set('cliente', clienteHidden.value);
       }
 
-      // Envio sempre para a raiz '/' para garantir que o Netlify intercepte o POST
-      const res = await fetch('/', {
+      // Envia os dados especificamente para a rota onde o formulário HTML original reside
+      const res = await fetch('/nps-traq/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(formData).toString()
